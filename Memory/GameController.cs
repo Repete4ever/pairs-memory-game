@@ -62,8 +62,8 @@ namespace Pairs
 
         private List<Card> AssignCardsToGameGrid(Grid gameGrid, List<Card> initialCardCollection)
         {
-            Contract.Ensures(gameGrid != null, "empty game grid not allowed");
-            Contract.Ensures(initialCardCollection.Count == this.gameSizeCol * this.gameSizeRow, "Must be stacked now");
+            Contract.Requires(gameGrid != null, "empty game grid not allowed");
+            Contract.Requires(initialCardCollection.Count == this.gameSizeCol * this.gameSizeRow, "Must be stacked now");
 
             List<Card> gameCardCollection = new List<Card>();
 
@@ -215,7 +215,7 @@ namespace Pairs
             while (DateTime.Now.Ticks < dtEnd)
             {
                 Grid g = new Grid();
-                g.Dispatcher.Invoke(DispatcherPriority.Background, (DispatcherOperationCallback)delegate(object unused) { return null; }, null);
+                g.Dispatcher.Invoke(DispatcherPriority.Background, (DispatcherOperationCallback)(unused => null), null);
             }
 
         }
