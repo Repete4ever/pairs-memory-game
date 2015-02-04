@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Media;
 using System.Windows;
 
@@ -9,13 +7,13 @@ namespace Pairs
 {
     public class SoundController
     {
-        private static SoundPlayer flipSound = new SoundPlayer();
-        private static SoundPlayer matchSound = new SoundPlayer();
-        private static SoundPlayer winSound = new SoundPlayer();
-        private static SoundPlayer gameOverSound = new SoundPlayer();
-        private static SoundPlayer popSound = new SoundPlayer();
+        private static readonly SoundPlayer flipSound = new SoundPlayer();
+        private static readonly SoundPlayer matchSound = new SoundPlayer();
+        private static readonly SoundPlayer winSound = new SoundPlayer();
+        private static readonly SoundPlayer gameOverSound = new SoundPlayer();
+        private static readonly SoundPlayer popSound = new SoundPlayer();
 
-        private Dictionary<SoundType, SoundPlayer> soundPlayerDic = new Dictionary<SoundType, SoundPlayer>()
+        private readonly Dictionary<SoundType, SoundPlayer> soundPlayerDic = new Dictionary<SoundType, SoundPlayer>()
         {
           {SoundType.Flip, flipSound},
           {SoundType.Match, matchSound},

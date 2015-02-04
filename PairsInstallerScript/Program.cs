@@ -17,33 +17,37 @@ class Script
                 new Project("Pairs",
                     new Dir(@"%ProgramFiles%\PhDGames\Pairs",
                         new File(AppName),
-                        new File(@"Xceed.Wpf.Toolkit.dll")) // to get IntegerUpDown control missing from standard WPF tookit
-                    );
+                        new File(@"Xceed.Wpf.Toolkit.dll"))
+                    // to get IntegerUpDown control missing from standard WPF tookit
+                    )
+                {
+                    MajorUpgradeStrategy = new MajorUpgradeStrategy
+                    {
+                        UpgradeVersions = VersionRange.OlderThanThis,
+                        PreventDowngradingVersions = VersionRange.NewerThanThis,
+                        NewerProductInstalledErrorMessage = "Newer version already installed"
+                    },
+                    UpgradeCode = new Guid("DB8E5060-47A9-4267-9EEB-4596352B98D3"),
+                    GUID = new Guid("0C92849D-483F-41A5-BD60-5B33E0D3D507"),
+                    UI = WUI.WixUI_InstallDir,
+                    OutFileName = "PairsInstaller",
+                    Manufacturer = "PhdGames",
+                    BackgroundImage = @"Nessy.bmp",
+                    BannerImage = @"Nessy.bmp",
+                    Description = "Pairs Memory Game - Can you beat the computer?",
+                    Version = new Version(1, 1, 1, 0),
+                    AddRemoveProgramsIcon = @"Nessy.ico"
+                };
 
             project
                 .FindFile(f => f.Name.EndsWith(AppName))
                 .First()
-                .Shortcuts = new[] {
-                                    new FileShortcut("Pairs", "%Desktop%") { Advertise = true, IconFile = "Nessy.ico" }
-                               };
+                .Shortcuts = new[]
+                {
+                    new FileShortcut("Pairs", "%Desktop%") {Advertise = true, IconFile = "Nessy.ico"}
+                };
 
 
-            project.GUID = new Guid("0C92849D-483F-41A5-BD60-5B33E0D3D507");
-            project.UpgradeCode = new Guid("DB8E5060-47A9-4267-9EEB-4596352B98D3");
-            project.MajorUpgradeStrategy = new MajorUpgradeStrategy
-              {
-                  UpgradeVersions = VersionRange.OlderThanThis,
-                  PreventDowngradingVersions = VersionRange.NewerThanThis,
-                  NewerProductInstalledErrorMessage = "Newer version already installed"
-              };
-            project.UI = WUI.WixUI_InstallDir;
-            project.OutFileName = "PairsInstaller";
-            project.Manufacturer = "PhdGames";
-            project.BackgroundImage = @"Nessy.bmp";
-            project.BannerImage = @"Nessy.bmp";
-            project.Description = "Pairs Memory Game - Can you beat the computer?";
-            project.Version = new Version(1, 1, 1, 0);
-            project.AddRemoveProgramsIcon = @"Nessy.ico";
 
             Compiler.BuildMsi(project);
         }

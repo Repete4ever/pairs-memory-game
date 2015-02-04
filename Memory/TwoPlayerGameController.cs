@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Controls;
-using System.Windows.Shapes;
 
 namespace Pairs
 {
     public class TwoPlayerGameController : GameController
     {
-        private List<Player> players = new List<Player>();
+        private readonly List<Player> players = new List<Player>();
 
         public TwoPlayerGameController(Grid gameGrid, GameOptions gameOptions)
             : base(gameGrid, gameOptions)
@@ -48,7 +45,7 @@ namespace Pairs
 
         private void GivePoints()
         {
-            players.Where(player => player.IsActive).Single().Score++;
+            players.Single(player => player.IsActive).Score++;
         }
 
         private void SwitchPlayer()
