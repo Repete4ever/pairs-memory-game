@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Media;
-using System.Windows.Shapes;
-using System.Windows.Media.Imaging;
+using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Controls;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 using System.Windows.Threading;
-using System.Windows.Input;
-using System.Diagnostics.Contracts;
 
 namespace Pairs
 {
@@ -52,13 +50,7 @@ namespace Pairs
             candidateStack.Push(new KeyValuePair<Card, Rectangle>((Card)cardRectangle.DataContext, cardRectangle));
         }
 
-        protected int CardsOnStack
-        {
-            get
-            {
-                return candidateStack.Count;
-            }
-        }
+        protected int CardsOnStack => candidateStack.Count;
 
         private List<Card> AssignCardsToGameGrid(Grid gameGrid, List<Card> initialCardCollection)
         {

@@ -4,76 +4,26 @@ namespace Pairs
 {
     public class GameOptions
     {
+        public string SelectedIconSet { get; set; } = "misc";
 
-        private string selectedIconSet = "misc";
-
-        public string SelectedIconSet
-        {
-            get { return selectedIconSet; }
-            set { selectedIconSet = value; }
-        }
-
-        private List<string> availableIconSets = new List<string>()
+        public List<string> AvailableIconSets { get; } = new List<string>()
         {
             "misc",
             "monster"
         };
 
-        public List<string> AvailableIconSets
-        {
-            get { return availableIconSets; }
-        }
+        public int SelectedGameRowSize { get; set; } = 6;
 
-        private int selectedGameRowSize = 6;
-        private int selectedGameColSize = 6;
+        public int SelectedGameColSize { get; set; } = 6;
 
-        public int SelectedGameRowSize
-        {
-            get { return selectedGameRowSize; }
-            set { selectedGameRowSize = value; }
-        }
+        public int MinimumGameRowSize { get; set; } = 4;
 
-        public int SelectedGameColSize
-        {
-            get { return selectedGameColSize; }
-            set { selectedGameColSize = value; }
-        }
+        public int MinimumGameColSize { get; set; } = 4;
 
-        private int minimumGameRowSize = 4;
-        private int minimumGameColSize = 4;
-        public int MinimumGameRowSize
-        {
-            get { return minimumGameRowSize; }
-            set { minimumGameRowSize = value; }
-        }
+        public int MaximumGameRowSize { get; set; } = 6;
 
-        public int MinimumGameColSize
-        {
-            get { return minimumGameColSize; }
-            set { minimumGameColSize = value; }
-        }
+        public int MaximumGameColSize { get; set; } = 6;
 
-        private int maximumGameRowSize = 6;
-        private int maximumGameColSize = 6;
-        public int MaximumGameRowSize
-        {
-            get { return maximumGameRowSize; }
-            set { maximumGameRowSize = value; }
-        }
-
-        public int MaximumGameColSize
-        {
-            get { return maximumGameColSize; }
-            set { maximumGameColSize = value; }
-        }
-
-        private int incrementRow = 2;
-        public int IncrementRow
-        {
-            get { return incrementRow; }
-            set { incrementRow = value; }
-        }
-
-
+        public int IncrementRow { get; set; } = 2;
     }
 }

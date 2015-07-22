@@ -9,9 +9,9 @@ namespace Pairs
 {
     public class AgainstComputerGameController : GameController
     {
-        private List<Card> cardMemory = new List<Card>();
+        private readonly List<Card> cardMemory = new List<Card>();
 
-        private List<Player> players = new List<Player>();
+        private readonly List<Player> players = new List<Player>();
 
         public AgainstComputerGameController(Grid gameGrid, GameOptions gameOptions)
             : base(gameGrid, gameOptions)
@@ -22,21 +22,9 @@ namespace Pairs
             players[0].IsActive = true;
         }
 
-        public Player Player1
-        {
-            get
-            {
-                return players[0];
-            }
-        }
+        public Player Player1 => players[0];
 
-        public Player Player2
-        {
-            get
-            {
-                return players[1];
-            }
-        }
+        public Player Player2 => players[1];
 
         protected override void OnCardPicked(Card card)
         {
@@ -81,7 +69,7 @@ namespace Pairs
 
         private void GivePoints()
         {
-            players.Where(player => player.IsActive).Single().Score++;
+            players.Single(player => player.IsActive).Score++;
         }
 
         private void SwitchPlayer()
@@ -145,8 +133,8 @@ namespace Pairs
             
 
             var allRectangles = gameGrid.Children.OfType<Rectangle>().ToList();
-            var recA = allRectangles.Where(rec => rec.DataContext == cardA).Single();
-            var recB = allRectangles.Where(rec => rec.DataContext == cardB).Single();
+            var recA = allRectangles.Single(rec => rec.DataContext == cardA);
+            var recB = allRectangles.Single(rec => rec.DataContext == cardB);
 
             Wait(6800);
             PickCard(recA);
@@ -158,7 +146,7 @@ namespace Pairs
 
         private IGrouping<string, Card> CheckMemoryForMatch()
         {
-            IGrouping<string,Card> result = cardMemory.GroupBy(c => c.Name).Where(g => g.Count() > 1).FirstOrDefault();
+            IGrouping<string,Card> result = cardMemory.GroupBy(c => c.Name).FirstOrDefault(g => g.Count() > 1);
 
             return result;
         }

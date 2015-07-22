@@ -17,21 +17,9 @@ namespace Pairs
             players[0].IsActive = true;
         }
 
-        public Player Player1
-        {
-            get
-            {
-                return players[0];
-            }
-        }
+        public Player Player1 => players[0];
 
-        public Player Player2
-        {
-            get
-            {
-                return players[1];
-            }
-        }
+        public Player Player2 => players[1];
 
         protected override void OnMatch(string cardName)
         {

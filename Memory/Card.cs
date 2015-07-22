@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.ComponentModel;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.ComponentModel;
-using System.Windows.Controls;
-using System.Windows;
 
 namespace Pairs
 {
@@ -15,22 +10,18 @@ namespace Pairs
 
         private readonly BitmapImage frontImage;
         private readonly BitmapImage backImage;
-        private readonly string name;
 
 
         public Card (string name, BitmapImage frontImage, BitmapImage backImage)
 	    {
-            this.name = name;
+            this.Name = name;
             this.frontImage = frontImage;
             this.backImage = backImage;
 
             this.Status = CardState.Covered;
 	    }
 
-        public string Name
-        {
-            get { return name; }
-        } 
+        public string Name { get; }
 
         public CardState Status { get; set; }
 
@@ -40,15 +31,13 @@ namespace Pairs
             {
                 if (this.Status == CardState.Covered)
                 {
-                    var brush = new ImageBrush(backImage);
-                    brush.Stretch = Stretch.Uniform;
+                    var brush = new ImageBrush(backImage) {Stretch = Stretch.Uniform};
                     return brush;
                 }
                 
                 if (this.Status == CardState.Uncovered)
                 {
-                    var brush = new ImageBrush(frontImage);
-                    brush.Stretch = Stretch.Uniform;
+                    var brush = new ImageBrush(frontImage) {Stretch = Stretch.Uniform};
                     return brush;
                 }
 
@@ -81,10 +70,7 @@ namespace Pairs
 
         private void RaiseNotifyChanged(string propertyName)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

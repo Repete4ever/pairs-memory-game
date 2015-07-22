@@ -6,13 +6,8 @@ namespace Pairs
     {
         private int score;
         private bool active;
-        private string name;
 
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
+        public string Name { get; set; }
 
 
         public int Score
@@ -46,10 +41,7 @@ namespace Pairs
 
         private void RaiseNotifyPropertyChanged(string propertyName)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
